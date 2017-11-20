@@ -9,16 +9,17 @@
 <?php
 if (!isset($_POST['browserWidth']) && !isset($_POST['browserHeight']))
 {
-    echo "<script type='text/javascript'>";
-    echo "var innerWidth = window.innerWidth;";
-    echo "var innerHeight = window.innerHeight;";
-    echo "document.write('<form name=\'member_signup\' method=\'POST\'>');";
-    echo "document.write('<p>Ваше имя:<br />');";
-    echo "document.write('<input type=\'hidden\' name=\'browserWidth\' value = \'' + innerWidth + '\'</p>');";
-    echo "document.write('<input type=\'hidden\' name=\'browserHeight\' value = \'' + innerHeight + '\'</p>');";
-    echo "document.write('<input type=\'submit\' />');";
-    echo "document.write('</form>');";
-    echo "</script>";
+    $form = "<script type='text/javascript'>";
+    $form .= "var innerWidth = window.innerWidth;";
+    $form .= "var innerHeight = window.innerHeight;";
+    $form .= "document.write('<form name=\'member_signup\' method=\'POST\'>');";
+    $form .= "document.write('<p>Ваше имя:<br />');";
+    $form .= "document.write('<input type=\'hidden\' name=\'browserWidth\' value = \'' + innerWidth + '\'</p>');";
+    $form .= "document.write('<input type=\'hidden\' name=\'browserHeight\' value = \'' + innerHeight + '\'</p>');";
+    $form .= "document.write('<input type=\'submit\' />');";
+    $form .= "document.write('</form>');";
+    $form .= "</script>";
+    echo $form;
 }
 else { 
   $time = date('d-m-Y H:i:s');
