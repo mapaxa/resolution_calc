@@ -5,14 +5,17 @@
 	<title>Передача значений переменных</title>
 </head>
 <?php //вешаем событие ?>
-<body onload="document.forms['member_signup'].submit()">
+<body 
+<?php if (!isset($_POST['browserWidth']) && !isset($_POST['browserHeight'])) 
+  { echo 'onload="document.forms[\'member_signup\'].submit();"'; 
+} ?> >
 <?php
 if (!isset($_POST['browserWidth']) && !isset($_POST['browserHeight']))
 {
     $form = "<script type='text/javascript'>";
     $form .= "var innerWidth = window.innerWidth;";
     $form .= "var innerHeight = window.innerHeight;";
-    $form .= "document.write('<form name=\'member_signup\' method=\'POST\'>');";
+    $form .= "document.write('<form style=\'visibility: hidden;\' name=\'member_signup\' method=\'POST\'>');";
     $form .= "document.write('<p>Ваше имя:<br />');";
     $form .= "document.write('<input type=\'hidden\' name=\'browserWidth\' value = \'' + innerWidth + '\'</p>');";
     $form .= "document.write('<input type=\'hidden\' name=\'browserHeight\' value = \'' + innerHeight + '\'</p>');";
@@ -21,7 +24,7 @@ if (!isset($_POST['browserWidth']) && !isset($_POST['browserHeight']))
     $form .= "</script>";
     echo $form;
 }
-else { 
+else {
   $time = date('d-m-Y H:i:s');
   $ip = $_SERVER['REMOTE_ADDR'];
 
