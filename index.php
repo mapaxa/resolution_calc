@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset = "utf-8" />
-	<title>Передача значений переменных</title>
+	<title>Передача значений переменных js-php</title>
 </head>
 <?php //вешаем событие ?>
 <body 
@@ -25,7 +25,11 @@ if (!isset($_POST['browserWidth']) && !isset($_POST['browserHeight']))
     echo $form;
 }
 else {
-  $time = date('d-m-Y H:i:s');
+
+  $correction_server_time = 2; //указать время в часах, которое серверное время отличается от клиентского(todo посмотреть можно ли это сделать автоматом)
+  $correction_server_time_sec = $correction_server_time * 60 * 60;
+  $currrent_time_stamp = time() + $correction_server_time_sec;
+  $time = date('d-m-Y H:i:s', $currrent_time_stamp);
   $ip = $_SERVER['REMOTE_ADDR'];
 
   $content = $time . '   ' . $_POST['browserWidth'] . ' х ' . $_POST['browserHeight'] . ' : ' . $ip;
@@ -41,7 +45,6 @@ echo $path.$filename;
     fwrite($f, $content . PHP_EOL);
   }
   fclose($f);
-
 }
 ?>
 
