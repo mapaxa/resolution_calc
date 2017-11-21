@@ -25,6 +25,7 @@ if (!isset($_POST['browserWidth']) && !isset($_POST['browserHeight']))
     echo $form;
 }
 else {
+  $user_agent = $_SERVER["HTTP_USER_AGENT"];
 
   $correction_server_time = 2; //указать время в часах, которое серверное время отличается от клиентского(todo посмотреть можно ли это сделать автоматом)
   $correction_server_time_sec = $correction_server_time * 60 * 60;
@@ -32,7 +33,7 @@ else {
   $time = date('d-m-Y H:i:s', $currrent_time_stamp);
   $ip = $_SERVER['REMOTE_ADDR'];
 
-  $content = $time . '   ' . $_POST['browserWidth'] . ' х ' . $_POST['browserHeight'] . ' : ' . $ip;
+  $content = $time . '   ' . $_POST['browserWidth'] . ' х ' . $_POST['browserHeight'] . ' : ' . $ip . '  user_agent: ' . $user_agent;
   $path = __DIR__.'/sendfile/';
   $filename = 'userinfo.txt';
 echo $path.$filename;
